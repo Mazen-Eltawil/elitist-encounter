@@ -102,10 +102,15 @@
   html, body {
     @apply bg-luxury-black text-luxury-white font-montserrat overflow-x-hidden;
     scroll-behavior: smooth;
+    cursor: none; /* Hide default cursor for custom cursor */
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-playfair;
+  }
+
+  a, button, input, textarea, select, [role="button"] {
+    @apply cursor-none; /* Hide default cursor for custom cursor */
   }
 
   /* Custom Scrollbar */
@@ -125,6 +130,10 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-luxury-gold;
   }
+
+  ::selection {
+    @apply bg-luxury-gold/30 text-luxury-white;
+  }
 }
 
 @layer components {
@@ -134,31 +143,62 @@
 
   .luxury-input {
     @apply bg-transparent border-b border-luxury-gold/50 text-luxury-white placeholder-luxury-white/40 
-    focus:border-luxury-gold/80 focus:outline-none px-3 py-2 transition-all duration-300 
-    hover:border-luxury-gold/70;
+    focus:border-luxury-gold/80 focus:outline-none px-3 py-2 transition-all duration-500 
+    hover:border-luxury-gold/70 rounded-none;
   }
 
   .luxury-btn {
-    @apply font-montserrat font-medium px-6 py-3 rounded-sm bg-luxury-gold text-luxury-black 
-    hover:bg-luxury-gold-light transition-all duration-300 focus:outline-none
-    shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_20px_rgba(212,175,55,0.5)];
+    @apply font-montserrat font-medium px-6 py-3 rounded-sm text-luxury-black relative
+    overflow-hidden transition-all duration-500 focus:outline-none outline-none
+    shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)];
   }
 
   .luxury-link {
-    @apply relative inline-block text-luxury-white hover:text-luxury-gold transition-colors duration-300
+    @apply relative inline-block text-luxury-white hover:text-luxury-gold transition-all duration-500
     after:content-[''] after:absolute after:w-0 after:h-[1px] after:bg-luxury-gold after:bottom-0 after:left-0
-    after:transition-all after:duration-300 hover:after:w-full;
+    after:transition-all after:duration-500 hover:after:w-full;
   }
 
   .luxury-icon-btn {
     @apply flex items-center justify-center w-12 h-12 rounded-full bg-luxury-gray
-    border border-luxury-gold/30 text-luxury-gold transition-all duration-300
-    hover:border-luxury-gold hover:text-luxury-gold-light hover:shadow-[0_0_15px_rgba(212,175,55,0.3)];
+    border border-luxury-gold/30 text-luxury-gold transition-all duration-500
+    hover:border-luxury-gold hover:text-luxury-gold-light hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]
+    relative overflow-hidden;
   }
 
   .contact-card {
     @apply bg-luxury-gray bg-opacity-50 backdrop-blur-sm border border-luxury-gold/20
-    rounded-md p-6 transition-all duration-300 hover:border-luxury-gold/40
-    hover:shadow-[0_5px_20px_rgba(0,0,0,0.2)];
+    rounded-md p-8 transition-all duration-500 hover:border-luxury-gold/40
+    hover:shadow-[0_5px_30px_rgba(0,0,0,0.3)] relative overflow-hidden
+    hover:translate-y-[-5px];
+  }
+
+  /* Add a subtle shine effect to contact cards */
+  .contact-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
+    opacity-0 transition-opacity duration-1000 -translate-x-full;
+  }
+
+  .contact-card:hover::before {
+    @apply opacity-100 translate-x-full transition-transform duration-1000;
+  }
+}
+
+@layer utilities {
+  .text-shadow-gold {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+
+  .bg-size-200 {
+    background-size: 200% 100%;
+  }
+
+  .bg-pos-0 {
+    background-position: 0% 0%;
+  }
+
+  .bg-pos-100 {
+    background-position: 100% 0%;
   }
 }

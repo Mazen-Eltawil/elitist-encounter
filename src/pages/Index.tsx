@@ -29,7 +29,7 @@ const Index: React.FC = () => {
         <div className="luxury-container">
           {/* Logo and Headline */}
           <div className="flex flex-col items-center justify-center text-center mb-16">
-            <Logo variant="text" className="mb-6 opacity-0 animate-fade-in" />
+            {/* Removed the Logo component from here */}
             
             <div className="w-16 h-[1px] bg-luxury-gold/30 my-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}></div>
             

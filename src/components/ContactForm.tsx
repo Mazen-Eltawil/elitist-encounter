@@ -56,115 +56,161 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="mt-16 max-w-2xl mx-auto opacity-0 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="mt-16 max-w-2xl mx-auto"
+    >
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="group relative">
-            <div className={`absolute -inset-0.5 bg-gradient-to-r from-luxury-gold/30 to-luxury-gold-light/30 rounded-md blur opacity-30 group-hover:opacity-100 transition duration-1000 ${formFocus.name ? 'opacity-100' : ''}`}></div>
-            <div className="relative">
-              <Input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                onFocus={() => handleFocus('name')}
-                onBlur={() => handleBlur('name')}
-                placeholder="Your Name"
-                required
-                className="luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-500"
+          <div className="relative">
+            <Input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              onFocus={() => handleFocus('name')}
+              onBlur={() => handleBlur('name')}
+              placeholder="Your Name"
+              required
+              className={`luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-300 ${
+                formFocus.name ? 'border-luxury-gold' : ''
+              }`}
+            />
+            {formFocus.name && (
+              <motion.div 
+                layoutId="inputFocus"
+                className="absolute -bottom-px left-0 h-px w-full bg-luxury-gold"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                exit={{ scaleX: 0 }}
+                transition={{ duration: 0.3 }}
               />
-            </div>
+            )}
           </div>
           
-          <div className="group relative">
-            <div className={`absolute -inset-0.5 bg-gradient-to-r from-luxury-gold/30 to-luxury-gold-light/30 rounded-md blur opacity-30 group-hover:opacity-100 transition duration-1000 ${formFocus.email ? 'opacity-100' : ''}`}></div>
-            <div className="relative">
-              <Input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                onFocus={() => handleFocus('email')}
-                onBlur={() => handleBlur('email')}
-                placeholder="Your Email"
-                required
-                className="luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-500"
+          <div className="relative">
+            <Input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onFocus={() => handleFocus('email')}
+              onBlur={() => handleBlur('email')}
+              placeholder="Your Email"
+              required
+              className={`luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-300 ${
+                formFocus.email ? 'border-luxury-gold' : ''
+              }`}
+            />
+            {formFocus.email && (
+              <motion.div 
+                layoutId="inputFocus"
+                className="absolute -bottom-px left-0 h-px w-full bg-luxury-gold"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                exit={{ scaleX: 0 }}
+                transition={{ duration: 0.3 }}
               />
-            </div>
+            )}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="group relative">
-            <div className={`absolute -inset-0.5 bg-gradient-to-r from-luxury-gold/30 to-luxury-gold-light/30 rounded-md blur opacity-30 group-hover:opacity-100 transition duration-1000 ${formFocus.phone ? 'opacity-100' : ''}`}></div>
-            <div className="relative">
-              <Input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                onFocus={() => handleFocus('phone')}
-                onBlur={() => handleBlur('phone')}
-                placeholder="Your Phone (Optional)"
-                className="luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-500"
+          <div className="relative">
+            <Input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              onFocus={() => handleFocus('phone')}
+              onBlur={() => handleBlur('phone')}
+              placeholder="Your Phone (Optional)"
+              className={`luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-300 ${
+                formFocus.phone ? 'border-luxury-gold' : ''
+              }`}
+            />
+            {formFocus.phone && (
+              <motion.div 
+                layoutId="inputFocus"
+                className="absolute -bottom-px left-0 h-px w-full bg-luxury-gold"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                exit={{ scaleX: 0 }}
+                transition={{ duration: 0.3 }}
               />
-            </div>
+            )}
           </div>
           
-          <div className="group relative">
-            <div className={`absolute -inset-0.5 bg-gradient-to-r from-luxury-gold/30 to-luxury-gold-light/30 rounded-md blur opacity-30 group-hover:opacity-100 transition duration-1000 ${formFocus.subject ? 'opacity-100' : ''}`}></div>
-            <div className="relative">
-              <Input
-                type="text"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                onFocus={() => handleFocus('subject')}
-                onBlur={() => handleBlur('subject')}
-                placeholder="Subject"
-                required
-                className="luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-500"
+          <div className="relative">
+            <Input
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              onFocus={() => handleFocus('subject')}
+              onBlur={() => handleBlur('subject')}
+              placeholder="Subject"
+              required
+              className={`luxury-input w-full bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-300 ${
+                formFocus.subject ? 'border-luxury-gold' : ''
+              }`}
+            />
+            {formFocus.subject && (
+              <motion.div 
+                layoutId="inputFocus"
+                className="absolute -bottom-px left-0 h-px w-full bg-luxury-gold"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                exit={{ scaleX: 0 }}
+                transition={{ duration: 0.3 }}
               />
-            </div>
+            )}
           </div>
         </div>
         
-        <div className="group relative">
-          <div className={`absolute -inset-0.5 bg-gradient-to-r from-luxury-gold/30 to-luxury-gold-light/30 rounded-md blur opacity-30 group-hover:opacity-100 transition duration-1000 ${formFocus.message ? 'opacity-100' : ''}`}></div>
-          <div className="relative">
-            <Textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              onFocus={() => handleFocus('message')}
-              onBlur={() => handleBlur('message')}
-              placeholder="Your Message"
-              required
-              rows={5}
-              className="luxury-input w-full resize-none bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-500"
+        <div className="relative">
+          <Textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            onFocus={() => handleFocus('message')}
+            onBlur={() => handleBlur('message')}
+            placeholder="Your Message"
+            required
+            rows={5}
+            className={`luxury-input w-full resize-none bg-luxury-gray border-luxury-gold/40 focus:border-luxury-gold transition-all duration-300 ${
+              formFocus.message ? 'border-luxury-gold' : ''
+            }`}
+          />
+          {formFocus.message && (
+            <motion.div 
+              layoutId="inputFocus"
+              className="absolute -bottom-px left-0 h-px w-full bg-luxury-gold"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              exit={{ scaleX: 0 }}
+              transition={{ duration: 0.3 }}
             />
-          </div>
+          )}
         </div>
         
         <div className="flex justify-center mt-12">
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="luxury-btn group relative px-8 py-4 overflow-hidden"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="relative px-8 py-4 overflow-hidden font-montserrat font-medium text-luxury-black bg-luxury-gold rounded-sm transition-all duration-300 hover:bg-luxury-gold-light"
+            whileHover={{ y: -2 }}
+            whileTap={{ y: 1 }}
           >
-            <span className="relative z-10 text-luxury-black font-medium tracking-wider">
+            <span className="relative z-10 tracking-wider">
               {isSubmitting ? 'Submitting...' : 'Send Inquiry'}
-            </span>
-            <span className="absolute inset-0 bg-gold-gradient bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-800"></span>
-            <span className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500">
-              <span className="absolute inset-0 bg-gradient-to-r from-luxury-gold-light to-luxury-gold blur-md"></span>
             </span>
           </motion.button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
